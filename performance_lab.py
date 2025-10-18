@@ -8,16 +8,21 @@
 
 def most_frequent(numbers):
     # Your code here
-    pass
+    if not numbers:
+        return None
+    freq={}
+    for num in numbers:
+        freq[num] = freq.get(num,0)+1
+    return max(freq, key=freq.get)
 
 """
 Time and Space Analysis for problem 1:
-- Best-case:
-- Worst-case:
-- Average-case:
-- Space complexity:
-- Why this approach?
-- Could it be optimized?
+- Best-case: O(n) Must traverse the whole list
+- Worst-case: O(n) same as best since all elements will be looked at
+- Average-case: O(n)
+- Space complexity: O(n) for the frequency dictionary
+- Why this approach?  A hash map Dictionary gives a O(1) average lookup time.
+- Could it be optimized? possibly with some minor edits but ultimatly it will remain around O(n)
 """
 
 
@@ -30,16 +35,22 @@ Time and Space Analysis for problem 1:
 
 def remove_duplicates(nums):
     # Your code here
-    pass
+    seen=set()
+    result=[]
+    for num in nums:
+        if num not in seen:
+            seen.add()
+            result.append(num)
+        return result 
 
 """
 Time and Space Analysis for problem 2:
-- Best-case:
-- Worst-case:
-- Average-case:
-- Space complexity:
-- Why this approach?
-- Could it be optimized?
+- Best-case: O(n) each element would be checked once.
+- Worst-case: O(n) all elements are unique and added to the result and set.
+- Average-case: O(n)
+- Space complexity: O(n) for storing unique elements in a set.
+- Why this approach? The use of a set checks for membership allowing for a O(1) average time.
+- Could it be optimized? Not in a way I could think of that would throw off the balence of time and space.
 """
 
 
@@ -53,16 +64,23 @@ Time and Space Analysis for problem 2:
 
 def find_pairs(nums, target):
     # Your code here
-    pass
+    seen=set()
+    pairs=[]
+    for num in nums:
+        complete=target-num
+        if complete in seen:
+            pairs.append(complete,num)
+        seen.add(num)
+        return pairs
 
 """
 Time and Space Analysis for problem 3:
-- Best-case:
-- Worst-case:
-- Average-case:
-- Space complexity:
-- Why this approach?
-- Could it be optimized?
+- Best-case: O(n) single pass through the list with constant time lookups 
+- Worst-case: O(n) same since each number is processed
+- Average-case: O(n)
+- Space complexity:O(n) for storing seen elements
+- Why this approach? A set allows for another O(1) average-time lookups for comeploments avoiding a O(n^2) loop
+- Could it be optimized? it probably could if there is a way to check a single pass pair finding meathod
 """
 
 
@@ -76,15 +94,26 @@ Time and Space Analysis for problem 3:
 
 def add_n_items(n):
     # Your code here
-    pass
+    capacity=1
+    size=0
+    data=[]
+    for i in range(n):
+        if size==capacity:
+            print(f"Resizing from {capacity} to {capacity * 2}")
+            capacity *=2
+            new_data=data.copy()
+            data=new_data
+        data.append(i)
+        size+=1
+    return data
 
 """
 Time and Space Analysis for problem 4:
-- When do resizes happen?
-- What is the worst-case for a single append?
-- What is the amortized time per append overall?
-- Space complexity:
-- Why does doubling reduce the cost overall?
+- When do resizes happen? Whenever the size == capacity 
+- What is the worst-case for a single append? O(n) during a resize meaning all data will be copied
+- What is the amortized time per append overall? O(1) resises become rare as the list grows larger
+- Space complexity: O(n) proportonal to number of elements
+- Why does doubling reduce the cost overall? each element is copied only a few times so cost grows linerarly
 """
 
 
@@ -99,14 +128,19 @@ Time and Space Analysis for problem 4:
 
 def running_total(nums):
     # Your code here
-    pass
+    totals=[]
+    current_sum=0
+    for num in nums:
+        current_sum+=num
+        totals.append(current_sum)
+    return totals
 
 """
 Time and Space Analysis for problem 5:
-- Best-case:
-- Worst-case:
-- Average-case:
-- Space complexity:
-- Why this approach?
-- Could it be optimized?
+- Best-case: O(n) must visit each element.
+- Worst-case: O(n)
+- Average-case: O(n)
+- Space complexity: O(n) output list of same length as input.
+- Why this approach? The single pass through helps minimize computation.
+- Could it be optimized? I don't think it could but there are always ways around stuff.
 """
